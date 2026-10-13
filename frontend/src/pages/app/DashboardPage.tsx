@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import DashboardHeader from '../../components/dashboard/DashboardHeader'
+import BackendStatus from '../../components/dashboard/BackendStatus'
 import QuickActions from '../../components/dashboard/QuickActions'
 import DashboardEmptyState from '../../components/dashboard/DashboardEmptyState'
 
@@ -7,8 +8,9 @@ export default function DashboardPage() {
   return (
     <>
       <DashboardHeader />
+      <BackendStatus />
       <section className="panel overview-panel" aria-labelledby="overview-heading">
-        <div className="panel-heading"><h2 id="overview-heading">Project Overview</h2><span className="subtle-label">Data not connected</span></div>
+        <div className="panel-heading"><h2 id="overview-heading">Project Overview</h2><span className="subtle-label">Aggregates unavailable</span></div>
         <dl className="stat-row">{['Total Projects', 'Documents Uploaded', 'Evaluations Run', 'Best Strategy'].map(label => <div key={label}><dt>{label}</dt><dd aria-label="Not available">—</dd></div>)}</dl>
       </section>
       <QuickActions />

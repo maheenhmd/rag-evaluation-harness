@@ -1,0 +1,607 @@
+/* =========================================================
+   RAGIFY AUTH
+   Only Sign In / Sign Up pages
+   ========================================================= */
+
+.ragify-auth-page {
+  --auth-page-bg: var(--background);
+  --auth-card-bg: var(--surface);
+  --auth-input-bg: var(--background);
+  --auth-text: var(--text);
+  --auth-muted: var(--muted);
+  --auth-border: var(--border);
+  --auth-accent: var(--blue);
+
+  position: relative;
+
+  width: 100%;
+  min-height: 100dvh;
+
+  display: grid;
+  place-items: center;
+
+  padding: 70px 24px;
+
+  background: var(--auth-page-bg);
+  color: var(--auth-text);
+}
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.ragify-auth-back {
+  position: fixed;
+
+  top: 30px;
+  left: 34px;
+
+  z-index: 20;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 6px 0;
+
+  border: 0;
+
+  background: transparent;
+  color: var(--auth-muted);
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.ragify-auth-back:hover {
+  color: var(--auth-text);
+  transform: translateX(-2px);
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.ragify-auth-card {
+  width: min(100%, 540px);
+
+  padding: 38px 40px 36px;
+
+  background: var(--auth-card-bg);
+
+  border: 1px solid var(--auth-border);
+  border-radius: 16px;
+
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.ragify-auth-brand {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 27px;
+}
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.ragify-auth-heading {
+  text-align: center;
+
+  margin-bottom: 36px;
+}
+
+.ragify-auth-heading h1 {
+  margin: 0;
+
+  color: var(--auth-text);
+
+  font-size: 34px;
+  font-weight: 600;
+
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+.ragify-auth-heading p {
+  margin: 11px 0 0;
+
+  color: var(--auth-muted);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.ragify-auth-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 22px;
+}
+
+.ragify-auth-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.ragify-auth-field label {
+  color: var(--auth-text);
+
+  font-size: 13px;
+  font-weight: 550;
+}
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+.ragify-auth-input-wrap {
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 0 14px;
+
+  background: var(--auth-input-bg);
+
+  border: 1px solid var(--auth-border);
+  border-radius: 8px;
+
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.ragify-auth-input-wrap:focus-within {
+  border-color: var(--auth-accent);
+
+  box-shadow:
+    0 0 0 3px
+    color-mix(
+      in srgb,
+      var(--auth-accent) 15%,
+      transparent
+    );
+}
+
+.ragify-auth-input-wrap > svg {
+  flex: 0 0 auto;
+
+  color: var(--auth-muted);
+}
+
+.ragify-auth-input-wrap input {
+  min-width: 0;
+  width: 100%;
+
+  height: 50px;
+
+  padding: 0;
+
+  background: transparent;
+  color: var(--auth-text);
+
+  border: 0;
+  outline: 0;
+
+  font: inherit;
+  font-size: 14px;
+}
+
+.ragify-auth-input-wrap input::placeholder {
+  color: var(--auth-muted);
+  opacity: 0.72;
+}
+
+/* =========================================================
+   PASSWORD TOGGLE
+   ========================================================= */
+
+.ragify-password-toggle {
+  flex: 0 0 auto;
+
+  width: 32px;
+  height: 32px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  background: transparent;
+  color: var(--auth-muted);
+
+  border: 0;
+
+  cursor: pointer;
+}
+
+.ragify-password-toggle:hover {
+  color: var(--auth-text);
+}
+
+/* =========================================================
+   OPTIONS
+   ========================================================= */
+
+.ragify-auth-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-top: -2px;
+}
+
+.ragify-remember {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--auth-muted);
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.ragify-remember input {
+  width: 15px;
+  height: 15px;
+
+  accent-color: var(--auth-accent);
+}
+
+.ragify-auth-link {
+  color: var(--auth-accent);
+
+  font-size: 13px;
+  font-weight: 500;
+
+  text-decoration: none;
+}
+
+.ragify-auth-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.ragify-auth-error {
+  margin: -7px 0 0;
+
+  color: #e05252;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.ragify-auth-submit {
+  width: 100%;
+  min-height: 52px;
+
+  margin-top: 2px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--auth-accent);
+  color: #ffffff;
+
+  border: 1px solid var(--auth-accent);
+  border-radius: 8px;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 160ms ease,
+    opacity 160ms ease;
+}
+
+.ragify-auth-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.ragify-auth-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* =========================================================
+   SIGN UP LINK
+   ========================================================= */
+
+.ragify-auth-switch {
+  margin: 27px 0 0;
+
+  color: var(--auth-muted);
+
+  font-size: 13px;
+
+  text-align: center;
+}
+
+.ragify-auth-switch a {
+  color: var(--auth-accent);
+
+  font-weight: 500;
+
+  text-decoration: none;
+}
+
+.ragify-auth-switch a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* =========================================================
+   SECURITY TEXT
+   ========================================================= */
+
+.ragify-auth-security {
+  margin: 29px 0 0;
+
+  padding-top: 20px;
+
+  border-top: 1px solid var(--auth-border);
+
+  color: var(--auth-muted);
+
+  font-size: 10px;
+
+  text-align: center;
+
+  letter-spacing: 0.035em;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .ragify-auth-page {
+    place-items: start center;
+
+    padding:
+      88px
+      16px
+      35px;
+  }
+
+  .ragify-auth-back {
+    top: 21px;
+    left: 19px;
+  }
+
+  .ragify-auth-card {
+    padding:
+      30px
+      21px
+      27px;
+
+    border-radius: 12px;
+  }
+
+  .ragify-auth-heading {
+    margin-bottom: 29px;
+  }
+
+  .ragify-auth-heading h1 {
+    font-size: 28px;
+  }
+
+  .ragify-auth-options {
+    align-items: flex-start;
+  }
+}
+
+
+
+
+
+
+/* =========================================================
+   AUTH — FORGOT PASSWORD
+   ========================================================= */
+
+.ragify-auth-forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -6px;
+}
+
+/* =========================================================
+   AUTH — DIVIDER
+   ========================================================= */
+
+.ragify-auth-divider {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 27px 0 20px;
+
+  color: var(--auth-muted);
+}
+
+.ragify-auth-divider::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  height: 1px;
+
+  background: var(--auth-border);
+}
+
+.ragify-auth-divider span {
+  position: relative;
+  z-index: 1;
+
+  padding: 0 13px;
+
+  background: var(--auth-card-bg);
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.09em;
+}
+
+/* =========================================================
+   AUTH — SOCIAL LOGIN
+   ========================================================= */
+
+.ragify-auth-socials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+}
+
+.ragify-auth-social {
+  min-height: 48px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 0 16px;
+
+  background: transparent;
+  color: var(--auth-text);
+
+  border: 1px solid var(--auth-border);
+  border-radius: 8px;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.ragify-auth-social:hover:not(:disabled) {
+  background:
+    color-mix(
+      in srgb,
+      var(--auth-text) 4%,
+      transparent
+    );
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--auth-text) 28%,
+      var(--auth-border)
+    );
+
+  transform: translateY(-1px);
+}
+
+.ragify-auth-social:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.ragify-google-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+/* =========================================================
+   AUTH — EMAIL VERIFICATION
+   ========================================================= */
+
+.ragify-auth-resend {
+  width: 100%;
+
+  margin-top: 19px;
+  padding: 0;
+
+  background: transparent;
+  color: var(--auth-accent);
+
+  border: 0;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.ragify-auth-resend:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ragify-auth-resend:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .ragify-auth-socials {
+    grid-template-columns: 1fr;
+  }
+}

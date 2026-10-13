@@ -1,25 +1,50 @@
+import { ArrowLeft } from 'lucide-react'
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import Brand from '../shared/Brand'
+import './auth.css'
 
-export default function AuthFormLayout({ title, description, children }: { title: string; description: string; children: ReactNode }) {
+type AuthFormLayoutProps = {
+  children: ReactNode
+  title?: string
+  description?: string
+}
+
+export default function AuthFormLayout({
+  children,
+  title,
+  description,
+}: AuthFormLayoutProps) {
+  const navigate = useNavigate()
+
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1)
+    } else {
+      navigate('/')
+    }
+  }
+
   return (
-    <section className="container auth-page">
-      <div className="auth-intro">
-        <p className="eyebrow">KNOW BEFORE YOU SHIP</p>
-        <h2>Better answers start<br />with better evidence.</h2>
-        <p>Bring your documents. Compare your options. Understand what to improve.</p>
-        <ol className="auth-benefits"><li>Evaluate on your own knowledge.</li><li>Compare retrieval and answer quality.</li><li>Get an explainable next step.</li></ol>
-        <Link className="text-link" to="/dashboard">Explore the UI preview <ArrowRight size={16} aria-hidden="true" /></Link>
-        <p className="small-note">Preview access does not sign you in.</p>
-      </div>
-      <div className="auth-surface">
-        <p className="eyebrow">ACCOUNT ACCESS</p>
-        <h1>{title}</h1>
-        <p className="auth-description">{description}</p>
-        <p className="notice">Interface preview. Authentication is not connected yet.</p>
+    <main className="auth-page">
+      <button
+        type="button"
+        className="auth-back-button"
+        onClick={handleBack}
+      >
+        <ArrowLeft size={17} />
+        Back
+      </button>
+
+      <div className="auth-container">
+        <div className="auth-logo">
+          <Brand />
+        </div>
+
+        {title ? <div className="auth-heading" aria-live="polite"><h1>{title}</h1>{description ? <p>{description}</p> : null}</div> : null}
+
         {children}
       </div>
-    </section>
+    </main>
   )
 }

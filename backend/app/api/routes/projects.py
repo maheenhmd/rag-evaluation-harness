@@ -13,7 +13,6 @@ from backend.app.services.project_service import (
     get_projects,
 )
 
-
 router = APIRouter()
 
 
@@ -27,7 +26,7 @@ router = APIRouter()
 )
 def create_new_project(
     project_data: ProjectCreate,
-    db: Session = Depends(get_db),
+    db: Session = Depends(get_db),  # noqa: B008
     owner_id: str = Depends(get_current_user_id),
 ):
     """
@@ -50,7 +49,7 @@ def create_new_project(
     response_model=list[ProjectResponse],
 )
 def list_projects(
-    db: Session = Depends(get_db),
+    db: Session = Depends(get_db),  # noqa: B008
     owner_id: str = Depends(get_current_user_id),
 ):
     """
@@ -73,7 +72,7 @@ def list_projects(
 )
 def get_project(
     project_id: int,
-    db: Session = Depends(get_db),
+    db: Session = Depends(get_db),  # noqa: B008
     owner_id: str = Depends(get_current_user_id),
 ):
     """

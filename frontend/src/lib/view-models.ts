@@ -1,4 +1,4 @@
-// UI data only, not API response types. Future integration maps real data into these props.
+// Shared UI states; project props use the real public API type below.
 // No example projects, requests, endpoints, or simulated network delays live here.
 export type ResourceState<T> =
   | { status: 'empty' }
@@ -6,9 +6,4 @@ export type ResourceState<T> =
   | { status: 'error'; message: string }
   | { status: 'ready'; data: T }
 
-export type ProjectView = {
-  id: string
-  name: string
-  description?: string
-  documentCount?: number
-}
+export type { Project as ProjectView } from './api-types'

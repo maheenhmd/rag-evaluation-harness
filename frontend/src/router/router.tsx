@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import PublicLayout from '../layouts/PublicLayout'
 import AppLayout from '../layouts/AppLayout'
+import RequireAuth from '../components/auth/RequireAuth'
 import HomePage from '../pages/public/HomePage'
 import FeaturesPage from '../pages/public/FeaturesPage'
 import HowItWorksPage from '../pages/public/HowItWorksPage'
@@ -37,11 +38,10 @@ export default function AppRoutes() {
         <Route index element={<HomePage />} />
         <Route path="features" element={<FeaturesPage />} />
         <Route path="how-it-works" element={<HowItWorksPage />} />
-        <Route path="sign-in" element={<SignInPage />} />
-        <Route path="sign-up" element={<SignUpPage />} />
+      
         <Route path="*" element={<NotFoundPage />} />
       </Route>
-      {/* UI preview only. Add real Clerk protection here when authentication is integrated. */}
+      <Route element={<RequireAuth />}>
       <Route element={<AppLayout />}>
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="projects" element={<ProjectsPage />} />
@@ -50,6 +50,10 @@ export default function AppRoutes() {
         <Route path="results" element={<ResultsPage />} />
         <Route path="settings" element={<SettingsPage />} />
       </Route>
+      </Route>
+
+       <Route path="sign-in" element={<SignInPage />} />
+        <Route path="sign-up" element={<SignUpPage />} />
     </Routes>
   )
 }

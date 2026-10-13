@@ -17,6 +17,17 @@
   .button:disabled { opacity: 0.55; cursor: not-allowed; }
   .dialog { width: min(520px, calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 28px; border-radius: 10px; border: 1px solid var(--border); color: var(--text); background: var(--surface); margin: auto; overflow-y: auto; }
   .dialog::backdrop { background: rgb(5 10 20 / 60%); }
+  .tour-overlay { position: fixed; inset: 0; z-index: 120; pointer-events: none; }
+  .tour-backdrop { position: absolute; inset: 0; background: rgb(5 10 20 / 62%); }
+  .tour-spotlight { position: absolute; border: 2px solid var(--blue); border-radius: 10px; box-shadow: 0 0 0 9999px rgb(5 10 20 / 62%); pointer-events: none; }
+  .tour-tooltip { position: absolute; width: min(320px, calc(100vw - 36px)); padding: 18px 18px 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); color: var(--text); pointer-events: auto; }
+  .tour-tooltip-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .tour-step-count { color: var(--muted); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .tour-close { padding: 0; min-height: auto; font-size: 12px; color: var(--muted); }
+  .tour-tooltip h3 { margin: 0 0 8px; font-size: 18px; letter-spacing: -0.03em; }
+  .tour-tooltip p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+  .tour-tooltip-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; }
+  .tour-tooltip-actions .button { min-height: 38px; padding-block: 10px; }
   .dialog-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: -6px -6px 14px 0; }
   .dialog-heading h2 { font-size: 24px; }
   .dialog-description { font-size: 13px; margin-bottom: 24px; }
@@ -63,6 +74,17 @@
   .page-heading h1 { font-size: 31px; letter-spacing: -0.04em; }
   .page-heading p { font-size: 13px; margin-top: 10px; max-width: 630px; }
   .page-heading-action { flex-shrink: 0; }
+  .backend-status { width: fit-content; display: flex; align-items: center; gap: 8px; margin: -14px 0 24px; color: var(--muted); font-size: 11px; }
+  .backend-status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+  .backend-status.is-checking .backend-status-dot { animation: status-pulse 1.2s ease-in-out infinite; }
+  .backend-status.is-connected { color: #067647; }
+  .backend-status.is-connected .backend-status-dot { background: #079455; }
+  .backend-status.is-unavailable { color: #B42318; }
+  .backend-status.is-unavailable .backend-status-dot { background: #D92D20; }
+  :root[data-theme='dark'] .backend-status.is-connected { color: #75E0A7; }
+  :root[data-theme='dark'] .backend-status.is-unavailable { color: #FDA29B; }
+  @keyframes status-pulse { 50% { opacity: 0.35; } }
+  @media (prefers-reduced-motion: reduce) { .backend-status.is-checking .backend-status-dot { animation: none; } }
   .panel { border: 1px solid var(--border); border-radius: 8px; background: var(--surface); min-width: 0; overflow-wrap: anywhere; }
   .panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; border-bottom: 1px solid var(--border); min-height: 64px; }
   .panel-heading .text-link { font-size: 11px; min-height: 30px; }
@@ -124,6 +146,16 @@
   .upload-action { margin-top: 20px; }
   .upload-action .form-status { margin-top: 12px; }
   .evaluation-controls { padding: 24px; }
+  .evaluation-fieldset { border: 0; min-width: 0; margin: 0; }
+  .document-list { list-style: none; padding: 0 24px; }
+  .document-list li { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; padding-block: 20px; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .document-list li:last-child { border-bottom: 0; }
+  .document-list strong { overflow-wrap: anywhere; }
+  .document-list span { color: var(--muted); font-size: 12px; }
+  .comparison-section { padding-block: 22px; border-top: 1px solid var(--border); }
+  .comparison-section > p { font-size: 12px; margin-top: 10px; }
+  .advanced-content > h2 { margin-top: 24px; }
+  .topbar-actions > .text-link { font-size: 12px; white-space: nowrap; }
   .evaluation-intro h3 { margin-bottom: 10px; }
   .evaluation-intro p { font-size: 13px; }
   .disclosure { border-block: 1px solid var(--border); margin-top: 22px; }

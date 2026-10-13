@@ -1,0 +1,278 @@
+/* =========================================================
+   RAGIFY AUTH PAGES ONLY
+   Sign In + Sign Up
+   ========================================================= */
+
+.auth-page {
+  --auth-bg: var(--background);
+  --auth-card: var(--surface);
+  --auth-input: var(--surface);
+  --auth-border: var(--border);
+  --auth-text: var(--text);
+  --auth-muted: var(--muted);
+  --auth-blue: var(--blue);
+
+  position: relative;
+
+  width: 100%;
+  min-height: 100dvh;
+
+  display: grid;
+  place-items: center;
+
+  padding: 72px 24px;
+
+  background: var(--auth-bg);
+  color: var(--auth-text);
+}
+
+/* Back button */
+
+.auth-back-button {
+  position: fixed;
+  top: 28px;
+  left: 32px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px 0;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--auth-muted);
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.auth-back-button:hover {
+  color: var(--auth-text);
+  transform: translateX(-2px);
+}
+
+/* Centered auth form */
+
+.auth-container {
+  width: 100%;
+  max-width: 470px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: stretch;
+}
+
+/* Ragify logo */
+
+.auth-logo {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 28px;
+}
+
+/* =========================================================
+   CLERK
+   ========================================================= */
+
+.auth-page .cl-rootBox,
+.auth-page .cl-cardBox {
+  width: 100%;
+}
+
+.auth-page .cl-cardBox {
+  box-shadow: none;
+}
+
+.auth-page .cl-card {
+  width: 100%;
+
+  padding: 34px 36px 30px;
+
+  background: var(--auth-card);
+
+  border: 1px solid var(--auth-border);
+  border-radius: 10px;
+
+  box-shadow: none;
+}
+
+.auth-page .cl-rootBox,
+.auth-page .cl-cardBox,
+.auth-page .cl-card,
+.auth-page .cl-form,
+.auth-page .cl-footer,
+.auth-page .cl-footerAction,
+.auth-page .cl-socialButtons,
+.auth-page .cl-socialButtonsBlockButton,
+.auth-page .cl-formButtonPrimary,
+.auth-page .cl-formFieldInput {
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+/* Clerk heading */
+
+.auth-page .cl-header {
+  margin-bottom: 26px;
+}
+
+.auth-page .cl-headerTitle {
+  color: var(--auth-text);
+
+  font-size: 27px;
+  font-weight: 600;
+
+  letter-spacing: -0.035em;
+
+  text-align: center;
+}
+
+.auth-page .cl-headerSubtitle {
+  display: none;
+}
+
+/* Labels */
+
+.auth-page .cl-formFieldLabel {
+  color: var(--auth-text);
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Inputs */
+
+.auth-page .cl-formFieldInput {
+  min-height: 48px;
+
+  background: var(--auth-input);
+  color: var(--auth-text);
+
+  border: 1px solid var(--auth-border);
+  border-radius: 6px;
+
+  box-shadow: none;
+}
+
+.auth-page .cl-formFieldInput::placeholder {
+  color: var(--auth-muted);
+}
+
+.auth-page .cl-formFieldInput:focus {
+  border-color: var(--auth-blue);
+
+  box-shadow:
+    0 0 0 3px rgba(79, 131, 241, 0.13);
+}
+
+/* Main button */
+
+.auth-page .cl-formButtonPrimary {
+  min-height: 49px;
+
+  background: var(--auth-blue);
+  color: #ffffff;
+
+  border-radius: 6px;
+
+  box-shadow: none;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.auth-page .cl-formButtonPrimary:hover {
+  opacity: 0.94;
+}
+
+/* OAuth */
+
+.auth-page .cl-socialButtonsBlockButton {
+  min-height: 47px;
+
+  background: transparent;
+  color: var(--auth-text);
+
+  border: 1px solid var(--auth-border);
+  border-radius: 6px;
+
+  box-shadow: none;
+}
+
+.auth-page .cl-socialButtonsBlockButton:hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+/* Divider */
+
+.auth-page .cl-dividerLine {
+  background: var(--auth-border);
+}
+
+.auth-page .cl-dividerText {
+  color: var(--auth-muted);
+
+  font-size: 10px;
+}
+
+/* Links */
+
+.auth-page .cl-footerActionLink,
+.auth-page .cl-formFieldAction {
+  color: var(--auth-blue);
+}
+
+.auth-page .cl-footerActionText {
+  color: var(--auth-muted);
+}
+
+/* Hide Clerk branding/footer clutter */
+
+.auth-page .cl-footer {
+  background: transparent;
+}
+
+.auth-page .cl-footerPages {
+  display: none;
+}
+
+/* Errors */
+
+.auth-page .cl-formFieldErrorText {
+  color: #ff6b6b;
+
+  font-size: 11px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .auth-page {
+    place-items: start center;
+
+    padding: 90px 18px 40px;
+  }
+
+  .auth-back-button {
+    top: 20px;
+    left: 20px;
+  }
+
+  .auth-container {
+    max-width: 440px;
+  }
+
+  .auth-page .cl-card {
+    padding: 28px 20px 24px;
+  }
+}

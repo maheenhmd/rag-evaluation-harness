@@ -1,0 +1,26 @@
+RAG Evaluation Harness Test Document
+
+Retrieval-Augmented Generation, commonly called RAG, combines information retrieval with a language model.
+
+A typical RAG pipeline works like this:
+1. A user asks a question.
+2. The system searches a knowledge base for relevant chunks.
+3. The retrieved context is sent to a language model.
+4. The model generates an answer using that context.
+
+Important evaluation areas include:
+- Retrieval quality
+- Answer relevance
+- Faithfulness
+- Hallucination rate
+- Response latency
+- Context precision
+- Context recall
+
+Example:
+Question: What is the purpose of a retriever?
+Answer: A retriever finds the most relevant documents or chunks for a user's query.
+
+A good RAG system should return relevant evidence, avoid unsupported claims, and respond consistently.
+
+This is a random text file created for upload, parsing, chunking, embedding, retrieval, and evaluation testing.

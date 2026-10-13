@@ -33,6 +33,11 @@ class Base(DeclarativeBase):
     pass
 
 
+# Import every model after Base exists so runtime sessions and migrations use
+# the same complete metadata registry.
+from backend.app import models  # noqa: E402, F401
+
+
 # -----------------------------
 # Database Dependency
 # -----------------------------

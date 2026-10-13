@@ -6,15 +6,51 @@ const currentYear = new Date().getFullYear()
 
 export default function Footer() {
   return (
-    <footer className="site-footer container">
-      <div className="footer-main">
-        <div><Brand /><p>A clearer view of your RAG performance.</p></div>
-        <nav aria-label="Footer navigation">
-          {navigation.map(link => <Link key={link.href} to={link.href}>{link.label}</Link>)}
-          <Link className="text-button" to="/sign-in">Sign In</Link>
-        </nav>
+    <footer className="site-footer">
+      <div className="container footer-layout">
+
+        <div className="footer-brand">
+          <Brand />
+
+          <p>
+            Evaluate retrieval, measure answer quality,
+            and understand what actually works in your RAG system.
+          </p>
+        </div>
+
+        <div className="footer-nav-group">
+          <p className="footer-nav-title">Product</p>
+
+          <nav aria-label="Product navigation">
+            {navigation.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="footer-nav-group">
+          <p className="footer-nav-title">Account</p>
+
+          <nav aria-label="Account navigation">
+            <Link to="/sign-in">Sign in</Link>
+            <Link to="/sign-up">Get started</Link>
+          </nav>
+        </div>
+
       </div>
-      <div className="footer-bottom"><span>© {currentYear} Ragify</span><span>Know what works before you ship.</span></div>
+
+      <div className="container footer-bottom">
+        <span>© {currentYear} Ragify</span>
+
+        <span>
+          RAG evaluation without guesswork.
+        </span>
+      </div>
     </footer>
   )
 }

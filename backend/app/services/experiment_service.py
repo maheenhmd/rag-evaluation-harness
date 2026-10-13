@@ -1,4 +1,5 @@
 import re
+import logging
 from collections import defaultdict
 from pathlib import Path
 
@@ -16,14 +17,14 @@ from backend.app.schemas.experiment import (
 )
 from backend.app.services.answer_evaluation_service import evaluate_answer
 from backend.app.services.document_service import get_project_documents
+from backend.app.services.evaluation_report_service import (
+    build_evaluation_report,
+    build_response_summary,
+)
 from backend.app.services.evaluation_service import (
     EvaluationDatasetError,
     evaluate_project_retrieval,
     evaluate_retrieval,
-)
-from backend.app.services.evaluation_report_service import (
-    build_evaluation_report,
-    build_response_summary,
 )
 from backend.app.services.experiment_run_service import save_experiment_run
 from backend.app.services.synthetic_dataset_service import (
@@ -35,6 +36,7 @@ from backend.app.services.synthetic_dataset_service import (
 CORPUS_PATH = Path(
     "data/evaluation/rag_retrieval_corpus.txt"
 )
+logger = logging.getLogger(__name__)
 
 
 class ProjectCorpusEmptyError(ValueError):
@@ -387,11 +389,14 @@ def run_project_evaluation(
     ]
     provider = OpenAIProvider()
     try:
+        logger.info("Evaluation project=%s phase=dataset outcome=start", project_id)
         dataset, cases, reused = get_or_create_dataset(db, project_id, chunks, request, provider)
+        logger.info("Evaluation project=%s phase=dataset outcome=success cases=%s reused=%s", project_id, len(cases), reused)
         # Resolve all labels before spending tokens on answer generation.
         queries_by_config = [_case_queries(cases, documents, config) for config in configs]
         summaries = []
         for config, queries in zip(configs, queries_by_config):
+            logger.info("Evaluation project=%s phase=%s outcome=start", project_id, config.strategy)
             scratch = build_project_experiment_chunks(documents, config)
             embeddings = [] if config.strategy == "bm25" else embed_texts([c["text"] for c in scratch])
             evaluation = evaluate_project_retrieval(
@@ -422,7 +427,10 @@ def run_project_evaluation(
                 },
                 "queries": answers,
             })
+            logger.info("Evaluation project=%s phase=%s outcome=success", project_id, config.strategy)
+        logger.info("Evaluation project=%s phase=report outcome=start", project_id)
         recommended, ranking, report = build_evaluation_report(summaries)
+        logger.info("Evaluation project=%s phase=run_persistence outcome=start", project_id)
         run = save_experiment_run(
             db, project_id, recommended,
             evaluation_dataset_id=dataset.id,
@@ -441,6 +449,7 @@ def run_project_evaluation(
             "ranking": ranking,
             "report": report,
         }
+        logger.info("Evaluation project=%s phase=run_persistence outcome=success run=%s", project_id, run.id)
         return {
             "summary": build_response_summary(report),
             "details": details,

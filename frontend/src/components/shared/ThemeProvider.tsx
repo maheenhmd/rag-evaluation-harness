@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
-import { ThemeContext } from '../../lib/theme'
+import { ThemeContext, getPreferredTheme } from '../../lib/theme'
 import type { Theme } from '../../lib/theme'
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, updateTheme] = useState<Theme>(() =>
-    document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
-  )
+  const [theme, updateTheme] = useState<Theme>(() => {
+    const existing = document.documentElement.dataset.theme
+    if (existing === 'dark' || existing === 'light') return existing
+    return getPreferredTheme()
+  })
 
   function setTheme(next: Theme) {
     updateTheme(next)
@@ -20,7 +22,10 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const syncPreference = (event: StorageEvent) => {
-      if (event.key === 'ragify-theme') updateTheme(event.newValue === 'dark' ? 'dark' : 'light')
+      if (event.key === 'ragify-theme') {
+        const next = event.newValue === 'dark' || event.newValue === 'light' ? event.newValue : getPreferredTheme()
+        updateTheme(next)
+      }
     }
     window.addEventListener('storage', syncPreference)
     return () => window.removeEventListener('storage', syncPreference)

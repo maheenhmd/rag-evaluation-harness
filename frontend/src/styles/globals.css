@@ -19,18 +19,26 @@
     font-synthesis: none; text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     --background: #F7F8FA; --surface: #FFFFFF; --surface-secondary: #EEF2F7;
-    --text: #111827; --muted: #64748B; --navy: #081225;
-    --blue: #2563EB; --cyan: #38BDF8; --violet: #7C6FF2; --border: #D9DEE8;
-    --button-bg: #2563EB; --button-hover: #1D4ED8; --button-text: #FFFFFF;
+    --surface-tertiary: #F4F5F6; --surface-elevated: #FBFBFC; --surface-muted: #F7F8FA;
+    --text: #111827; --muted: #64748B; --muted-strong: #676B72; --navy: #081225;
+    --blue: #2563EB; --blue-strong: #205CD2; --cyan: #38BDF8; --violet: #7C6FF2; --border: #D9DEE8;
+    --border-strong: #E7E8EB; --button-bg: #2563EB; --button-hover: #1D4ED8; --button-text: #FFFFFF;
     --active-surface: #EDF3FF; --shadow: 0 12px 40px -20px rgb(8 18 37 / 18%);
+    --marketing-hero-bg: var(--surface-tertiary); --marketing-panel-bg: var(--surface);
+    --marketing-panel-alt: var(--surface-secondary); --marketing-subtle-text: var(--muted-strong);
     color-scheme: light;
   }
   :root[data-theme='dark'] {
     --background: #050A14; --surface: #0C1424; --surface-secondary: #111C2E;
-    --text: #F5F7FA; --muted: #9AA6B7; --blue: #4B82F7; --cyan: #4CC9F0;
-    --violet: #8B7CF6; --border: #1E2B40; --button-bg: #4B82F7;
+    --surface-tertiary: #0D1627; --surface-elevated: #121C2F; --surface-muted: #0E1728;
+    --text: #F5F7FA; --muted: #9AA6B7; --muted-strong: #B7C0CC; --navy: #081225;
+    --blue: #4B82F7; --blue-strong: #78A0FF; --cyan: #4CC9F0; --violet: #8B7CF6;
+    --border: #1E2B40; --border-strong: #2B3B52; --button-bg: #4B82F7;
     --button-hover: #78A0FF; --button-text: #050A14; --active-surface: #111F38;
-    --shadow: 0 12px 40px -20px rgb(0 0 0 / 50%); color-scheme: dark;
+    --shadow: 0 12px 40px -20px rgb(0 0 0 / 50%);
+    --marketing-hero-bg: var(--surface-secondary); --marketing-panel-bg: var(--surface);
+    --marketing-panel-alt: var(--surface-secondary); --marketing-subtle-text: var(--muted);
+    color-scheme: dark;
   }
   :focus-visible { outline: 3px solid var(--blue); outline-offset: 5px; }
   ::selection { background: var(--blue); color: var(--surface); }
@@ -85,9 +93,9 @@
   .capability-list h3 { font-size: 17px; margin-bottom: 10px; }
   .capability-list p { font-size: 14px; max-width: 420px; }
   .results-section { border-top: 1px solid var(--border); padding-top: 82px; }
-  .final-cta { background: #081225; color: #F5F7FA; border-top: 1px solid #1E2B40; }
+  .final-cta { background: var(--navy); color: var(--text); border-top: 1px solid var(--border); }
   .final-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; padding-block: 70px; }
-  .final-cta .eyebrow { color: #9AA6B7; }
+  .final-cta .eyebrow { color: var(--muted); }
   .final-cta h2 { font-size: clamp(34px, 3.5vw, 48px); }
   .final-cta .button { min-width: 155px; }
   .site-footer { padding-block: 48px 24px; }
@@ -103,8 +111,8 @@
   .button-primary:hover { background: var(--button-hover); }
   .button-secondary { background: var(--surface); border-color: var(--border); }
   .button-secondary:hover { background: var(--surface-secondary); }
-  .button-light { background: #F5F7FA; color: #081225; }
-  .button-light:hover { background: #D9DEE8; }
+  .button-light { background: var(--surface-secondary); color: var(--text); }
+  .button-light:hover { background: var(--surface-elevated); }
   .text-button { background: transparent; border: 0; padding: 10px 0; min-height: 44px; font-size: 13px; }
   .icon-button { width: 44px; height: 44px; display: inline-flex; justify-content: center; align-items: center; background: transparent; border: 1px solid transparent; border-radius: 6px; flex-shrink: 0; }
   .icon-button:hover { background: var(--surface-secondary); border-color: var(--border); }

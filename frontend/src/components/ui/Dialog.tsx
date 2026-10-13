@@ -9,9 +9,10 @@ type DialogProps = {
   description?: string
   children: ReactNode
   className?: string
+  busy?: boolean
 }
 
-export default function Dialog({ open, onClose, title, description, children, className = '' }: DialogProps) {
+export default function Dialog({ open, onClose, title, description, children, className = '', busy = false }: DialogProps) {
   const element = useRef<HTMLDialogElement>(null)
   const titleId = useId()
   const descriptionId = useId()
@@ -22,11 +23,11 @@ export default function Dialog({ open, onClose, title, description, children, cl
   }, [open])
 
   return (
-    <dialog ref={element} className={`dialog ${className}`} onClose={onClose}
+    <dialog ref={element} className={`dialog ${className}`} onClose={onClose} onCancel={event => { if (busy) event.preventDefault() }}
       aria-labelledby={titleId} aria-describedby={description ? descriptionId : undefined}>
       <div className="dialog-heading">
         <h2 id={titleId}>{title}</h2>
-        <button className="icon-button" onClick={onClose} aria-label="Close dialog" autoFocus><X size={20} aria-hidden="true" /></button>
+        <button className="icon-button" onClick={onClose} disabled={busy} aria-label="Close dialog" autoFocus><X size={20} aria-hidden="true" /></button>
       </div>
       {description && <p id={descriptionId} className="dialog-description">{description}</p>}
       {children}
